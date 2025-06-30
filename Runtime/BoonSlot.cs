@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using HexTecGames.Basics.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,7 +41,7 @@ namespace HexTecGames.BoonSystem
             }
         }
 
-        public BoonEffect BoonEffect
+        public IDisplayable BoonEffect
         {
             get
             {
@@ -51,19 +52,19 @@ namespace HexTecGames.BoonSystem
                 this.boonEffect = value;
             }
         }
-        private BoonEffect boonEffect;
+        private IDisplayable boonEffect;
 
         public event Action<BoonSlot> OnClicked;
-        public event Action<BoonSlot, BoonEffect> OnBoonEffectChanged;
+        public event Action<BoonSlot, IDisplayable> OnBoonEffectChanged;
 
 
-        public void SetBoonEffect(BoonEffect boonEffect)
+        public void SetBoonEffect(IDisplayable boonEffect)
         {
             this.BoonEffect = boonEffect;
             if (boonEffect != null)
             {
-                icon.sprite = boonEffect.icon;
-                textGUI.text = boonEffect.name;
+                icon.sprite = boonEffect.Icon;
+                textGUI.text = boonEffect.Name;
             }
             else
             {
@@ -73,9 +74,9 @@ namespace HexTecGames.BoonSystem
             OnBoonEffectChanged?.Invoke(this, boonEffect);
         }
 
-        public bool IsValidEffect(BoonEffect effect)
+        public bool IsValidEffect(IDisplayable effect)
         {
-            if (!BoonGroup.Items.Contains(effect))
+            if (!BoonGroup.Contains(effect))
             {
                 return false;
             }

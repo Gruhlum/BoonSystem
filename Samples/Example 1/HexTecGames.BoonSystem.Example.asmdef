@@ -1,0 +1,17 @@
+{
+    "name": "HexTecGames.BoonSystem.Example",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a9af051dd6c1dba43ba9f023f1873831",
+        "GUID:4cc4c207c147801449ee01314a8f99b8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

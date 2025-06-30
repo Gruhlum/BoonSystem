@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using HexTecGames.Basics;
+using HexTecGames.Basics.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace HexTecGames.BoonSystem
 {
-    public class BoonIcon : MonoBehaviour, ISetup<BoonEffect>, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    public class BoonIcon : MonoBehaviour, ISetup<IDisplayable>, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         [SerializeField] private Image icon = default;
         [SerializeField] private Image background = default;
@@ -49,7 +50,7 @@ namespace HexTecGames.BoonSystem
 
         private bool isHovering;
 
-        public BoonEffect BoonEffect
+        public IDisplayable BoonEffect
         {
             get
             {
@@ -60,17 +61,17 @@ namespace HexTecGames.BoonSystem
                 boonEffect = value;
             }
         }
-        private BoonEffect boonEffect;
+        private IDisplayable boonEffect;
 
 
         public event Action<BoonIcon> OnHoverStarted;
         public event Action<BoonIcon> OnHoverEnded;
         public event Action<BoonIcon> OnClicked;
 
-        public void Setup(BoonEffect boonEffect)
+        public void Setup(IDisplayable boonEffect)
         {
             this.BoonEffect = boonEffect;
-            icon.sprite = boonEffect.icon;
+            icon.sprite = boonEffect.Icon;
             SetBackgroundColor();
         }
 

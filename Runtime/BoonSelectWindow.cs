@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using HexTecGames.Basics;
+using HexTecGames.Basics.UI;
 using HexTecGames.TooltipSystem;
 using TMPro;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace HexTecGames.BoonSystem
         [SerializeField] private TMP_Text tooltipGUI = default;
         [SerializeField] private MoveableWindow moveableWindow = default;
 
-        [SerializeField] private SetupSpawner<BoonIcon, BoonEffect> boonIconSpawner = default;
+        [SerializeField] private SetupSpawner<BoonIcon, IDisplayable> boonIconSpawner = default;
 
         private List<BoonIcon> activeIcons = new List<BoonIcon>();
 
@@ -21,7 +22,7 @@ namespace HexTecGames.BoonSystem
 
         public event Action OnDeactivated;
 
-        public void Setup(BoonSlot slot, List<BoonEffect> activeEffects)
+        public void Setup(BoonSlot slot, List<IDisplayable> activeEffects)
         {
             this.activeSlot = slot;
 
@@ -32,7 +33,7 @@ namespace HexTecGames.BoonSystem
                 activeIcon.OnHoverEnded -= Icon_OnHoverEnded;
             }
 
-            activeIcons = boonIconSpawner.DeactivateAllAndSpawnAndSetup(slot.BoonGroup.Items);
+            activeIcons = boonIconSpawner.DeactivateAllAndSpawnAndSetup(slot.BoonGroup.GetItems());
 
             foreach (var icon in activeIcons)
             {
@@ -78,7 +79,7 @@ namespace HexTecGames.BoonSystem
 
         private void Icon_OnHoverStarted(BoonIcon icon)
         {
-            tooltipGUI.text = icon.BoonEffect.description;
+            tooltipGUI.text = icon.BoonEffect.Description;
         }
 
         private void Icon_OnClicked(BoonIcon icon)

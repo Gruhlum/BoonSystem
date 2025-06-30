@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using HexTecGames.Basics;
+using HexTecGames.Basics.UI;
 using UnityEngine;
 
 namespace HexTecGames.BoonSystem
@@ -73,9 +74,9 @@ namespace HexTecGames.BoonSystem
             }
         }
 
-        public List<BoonEffect> GetActiveEffects()
+        public List<IDisplayable> GetActiveEffects()
         {
-            List<BoonEffect> effects = new List<BoonEffect>();
+            List<IDisplayable> effects = new List<IDisplayable>();
             foreach (var slot in boonSlots)
             {
                 effects.Add(slot.BoonEffect);
