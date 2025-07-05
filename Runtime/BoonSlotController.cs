@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using HexTecGames.Basics;
@@ -24,7 +23,7 @@ namespace HexTecGames.BoonSystem
 
             boonSlots = GetComponentsInChildren<BoonSlot>().ToList();
 
-            foreach (var boonSlot in boonSlots)
+            foreach (BoonSlot boonSlot in boonSlots)
             {
                 boonSlot.OnClicked += BoonSlot_OnClicked;
             }
@@ -77,7 +76,7 @@ namespace HexTecGames.BoonSystem
         public List<IDisplayable> GetActiveEffects()
         {
             List<IDisplayable> effects = new List<IDisplayable>();
-            foreach (var slot in boonSlots)
+            foreach (BoonSlot slot in boonSlots)
             {
                 effects.Add(slot.BoonEffect);
             }

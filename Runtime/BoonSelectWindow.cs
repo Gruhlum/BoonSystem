@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using HexTecGames.Basics;
 using HexTecGames.Basics.UI;
@@ -26,7 +25,7 @@ namespace HexTecGames.BoonSystem
         {
             this.activeSlot = slot;
 
-            foreach (var activeIcon in activeIcons)
+            foreach (BoonIcon activeIcon in activeIcons)
             {
                 activeIcon.OnClicked -= Icon_OnClicked;
                 activeIcon.OnHoverStarted -= Icon_OnHoverStarted;
@@ -35,7 +34,7 @@ namespace HexTecGames.BoonSystem
 
             activeIcons = boonIconSpawner.DeactivateAllAndSpawnAndSetup(slot.BoonGroup.GetItems());
 
-            foreach (var icon in activeIcons)
+            foreach (BoonIcon icon in activeIcons)
             {
                 icon.OnClicked += Icon_OnClicked;
                 icon.OnHoverStarted += Icon_OnHoverStarted;
@@ -44,7 +43,7 @@ namespace HexTecGames.BoonSystem
 
             if (activeEffects != null && activeEffects.Count > 0)
             {
-                foreach (var icon in activeIcons)
+                foreach (BoonIcon icon in activeIcons)
                 {
                     if (icon.BoonEffect == slot.BoonEffect)
                     {
@@ -52,7 +51,7 @@ namespace HexTecGames.BoonSystem
                         icon.IsInactive = false;
                         continue;
                     }
-                    
+
                     if (activeEffects.Contains(icon.BoonEffect))
                     {
                         icon.IsInactive = true;
@@ -62,7 +61,7 @@ namespace HexTecGames.BoonSystem
                     {
                         icon.IsSelected = false;
                         icon.IsInactive = false;
-                    } 
+                    }
                 }
             }
             moveableWindow.Setup(slot.RectTransform, true);
@@ -84,7 +83,7 @@ namespace HexTecGames.BoonSystem
 
         private void Icon_OnClicked(BoonIcon icon)
         {
-            foreach (var activeIcon in activeIcons)
+            foreach (BoonIcon activeIcon in activeIcons)
             {
                 if (activeIcon.IsSelected && !activeIcon.IsInactive)
                 {

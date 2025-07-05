@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using HexTecGames.Basics;
 using HexTecGames.Basics.UI;
 using UnityEngine;
@@ -88,7 +86,7 @@ namespace HexTecGames.BoonSystem
             }
 
             ColorMixer colorMixer = new ColorMixer();
-            
+
             if (IsSelected)
             {
                 colorMixer.Add(selectedColor);
